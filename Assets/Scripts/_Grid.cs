@@ -4,24 +4,27 @@ public class _Grid : MonoBehaviour
     GameObject[,] myCells;
 
     [Header("Cell Attributes")]
-    [SerializeField] int CellRows = 10;
-    [SerializeField] int CellColumns = 10;
-    [SerializeField] float CellScale = 1.5f;
+    public int CellRows = 10;
+    public int CellColumns = 10;
+    public float CellScale = 1.5f;
 
     [Header("Speed")]
-    [SerializeField] float SpeedOfSimulation = 4f;
+    public float SpeedOfSimulation = 4f;
 
+    [Header("Patterns of Life")]
+    public bool RandomPatterns = false;
+  
     void Start()
     {
-        Application.targetFrameRate = 4; 
+        Application.targetFrameRate = 1; 
         GridCreation();
-        CellCheck();        
+        CellCheck();
     }
 
     private void Update()
     {
         Application.targetFrameRate = (int)SpeedOfSimulation;
-        NeighborCheck();        
+        NeighborCheck();
     }
 
     public void GridCreation()
@@ -55,8 +58,7 @@ public class _Grid : MonoBehaviour
 
                 spriteRenderer.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
-                spriteRenderer.color = Color.green;
-                //spriteRenderer.color = new Color(Random.value, Random.value, Random.value); // Random color
+                spriteRenderer.color = Color.blue;                
 
                 float scaleX = CellSizeX / texture.width * CellScale;
                 float scaleY = CellSizeY / texture.height * CellScale;
@@ -71,26 +73,6 @@ public class _Grid : MonoBehaviour
                 cellObject.transform.position = new Vector3(posX, posY, 0);
             }
         }        
-    }
-
-    public void LiveOrDead(int x, int y)
-    {             
-        int spawnChancePercentage = 15;
-
-        int randomSpawn = Random.Range(0, 100);
-
-
-        if (randomSpawn < spawnChancePercentage)
-        {
-            myCells[x, y].SetActive(true);
- 
-        }
-
-        else
-        {
-            myCells[x, y].SetActive(false);
-
-        }
     }
 
     public void CellCheck()
@@ -152,8 +134,7 @@ public class _Grid : MonoBehaviour
 
     private void NeighborCheck()
     {
-        
-     
+
         bool[,] NextGen = new bool[CellRows, CellColumns];
 
         for (int x = 0; x < CellRows; x++)
@@ -167,52 +148,57 @@ public class _Grid : MonoBehaviour
                 for (int i = 0; i < CheckX.Length; i++)
                 {
 
-                        int neighborX = x + CheckX[i];
-                        int neighborY = y + CheckY[i];
+                    int neighborX = x + CheckX[i];
+                    int neighborY = y + CheckY[i];
 
-                        if (neighborX >= 0 && neighborX < CellRows && neighborY >= 0 && neighborY < CellColumns)
+                    if (neighborX >= 0 && neighborX < CellRows && neighborY >= 0 && neighborY < CellColumns)
+                    {
+                        if (myCells[neighborX, neighborY] != null && myCells[neighborX, neighborY].activeSelf)
                         {
-                            if (myCells[neighborX, neighborY] != null && myCells[neighborX, neighborY].activeSelf)
-                            {
-                                liveNeighborCount++;
-                            }
+                            liveNeighborCount++;
                         }
-
-                    
+                    }
                 }
 
-                bool isAlive = myCells[x, y] != null && myCells[x, y].activeSelf;
+                bool isAlive = myCells[x, y] != null && myCells[x, y].activeSelf;                
 
                 if (isAlive)
                 {
-                    // Rule 1: Any live cell with fewer than two live neighbors dies (underpopulation)
-                    // Rule 3: Any live cell with more than three live neighbors dies (overpopulation)
                     if (liveNeighborCount < 2 || liveNeighborCount > 3)
                     {
-                        NextGen[x, y] = false;
+                        NextGen[x, y] = false; 
+                        
                     }
+
 
                     else
                     {
                         NextGen[x, y] = true;
+                        myCells[x, y].GetComponent<SpriteRenderer>().color = Color.blue;
+
                     }
                 }
+
                 else
                 {
-                    // Rule 4: Any dead cell with exactly three live neighbors becomes a live cell (reproduction)
                     if (liveNeighborCount == 3)
                     {
                         NextGen[x, y] = true;
+                        myCells[x, y].GetComponent<SpriteRenderer>().color = Color.cyan;
                     }
+
                     else
                     {
                         NextGen[x, y] = false;
+                        
+
+                        
                     }
                 }
             }
         }
 
-        
+
         for (int x = 0; x < CellRows; x++)
         {
             for (int y = 0; y < CellColumns; y++)
@@ -224,5 +210,38 @@ public class _Grid : MonoBehaviour
             }
         }
     }
+
+    public void LiveOrDead(int x, int y)
+    {
+        if(RandomPatterns)
+        {
+            RandomSpawn(x, y);
+        }
+        else
+        {
+            
+            myCells[x, y].SetActive(false);
+        }
+    }
+
+    private void RandomSpawn(int x, int y)
+    {
+        int spawnChancePercentage = 20;
+
+        int randomSpawn = Random.Range(0, 100);
+
+        if (randomSpawn < spawnChancePercentage)
+        {
+            myCells[x, y].SetActive(true);            
+        }
+
+        else
+        {
+            myCells[x, y].SetActive(false);            
+        }
+    }
+
+
+
 }
 

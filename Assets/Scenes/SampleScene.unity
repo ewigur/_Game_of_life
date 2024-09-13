@@ -269,15 +269,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: CellScale
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
+      propertyPath: myPattern
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: CellColumns
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
+      propertyPath: RandomPatterns
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: RoomBetweenCells
