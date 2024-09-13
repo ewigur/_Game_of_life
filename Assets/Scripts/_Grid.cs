@@ -153,7 +153,7 @@ public class _Grid : MonoBehaviour
     private void NeighborCheck()
     {
         
-        // Create a temporary array to store the new state of each cell
+     
         bool[,] NextGen = new bool[CellRows, CellColumns];
 
         for (int x = 0; x < CellRows; x++)
@@ -189,12 +189,12 @@ public class _Grid : MonoBehaviour
                     // Rule 3: Any live cell with more than three live neighbors dies (overpopulation)
                     if (liveNeighborCount < 2 || liveNeighborCount > 3)
                     {
-                        NextGen[x, y] = false;  // Die
+                        NextGen[x, y] = false;
                     }
 
                     else
                     {
-                        NextGen[x, y] = true;   // Stay alive
+                        NextGen[x, y] = true;
                     }
                 }
                 else
@@ -212,7 +212,7 @@ public class _Grid : MonoBehaviour
             }
         }
 
-        // Update the cells with the new states
+        
         for (int x = 0; x < CellRows; x++)
         {
             for (int y = 0; y < CellColumns; y++)
