@@ -265,11 +265,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: CellRows
-      value: 96
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: CellScale
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: m_Enabled
@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: CellColumns
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: RandomPatterns
@@ -293,7 +293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: SpeedOfSimulation
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: spawnChancePercentage
