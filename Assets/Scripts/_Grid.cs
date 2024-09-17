@@ -4,8 +4,8 @@ public class _Grid : MonoBehaviour
     GameObject[,] myCells;
 
     [Header("Cell Attributes")]
-    public int CellRows = 10;
-    public int CellColumns = 10;
+    private int CellRows = 202;
+    private int CellColumns = 126;
     public float CellScale = 1.5f;
 
     [Header("Speed")]
@@ -14,28 +14,37 @@ public class _Grid : MonoBehaviour
     [Header("Patterns of Life")]
     public bool RandomPatterns = false;
     public bool DrawPatterns = false;
-    
-    public bool started;
 
+    private bool PauseGame = false;
+
+    private Camera myCamera;
 
     void Start()
     {
-        Application.targetFrameRate = 1; 
+        myCamera = Camera.main;
+
+        Application.targetFrameRate = 4; 
         GridCreation();
-        //CellCheck();
     }
 
     private void Update()
     {
         
-        if(!started)
         {
-            return;
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                PauseGame = !PauseGame;
+            }
 
-        Application.targetFrameRate = SpeedOfSimulation;
-        NeighborCheck();
-        
+            if (PauseGame)
+            {
+                DrawSpawn();
+                return;
+            }
+
+            Application.targetFrameRate = SpeedOfSimulation;
+            NeighborCheck();
+        }
     }
 
     public void GridCreation()
@@ -43,18 +52,18 @@ public class _Grid : MonoBehaviour
 
         myCells = new GameObject[CellRows, CellColumns];
 
-        var texture = new Texture2D(16, 16);
+        var texture = new Texture2D(32, 32);
 
         Vector2 ScreenBounds = new();
 
-        ScreenBounds.x = Camera.main.orthographicSize * Camera.main.aspect * 2;
-        ScreenBounds.y = Camera.main.orthographicSize * 2;
+        ScreenBounds.x = myCamera.orthographicSize * myCamera.aspect * 2;
+        ScreenBounds.y = myCamera.orthographicSize * 2;
 
         float CellSizeX = ScreenBounds.x / CellRows;
         float CellSizeY = ScreenBounds.y / CellColumns;
 
-        float CellStartX = Camera.main.transform.position.x - (ScreenBounds.x * 0.5f) + (CellSizeX * 0.5f);
-        float CellStartY = Camera.main.transform.position.y - (ScreenBounds.y * 0.5f) + (CellSizeY * 0.5f);
+        float CellStartX = myCamera.transform.position.x - (ScreenBounds.x * 0.5f) + (CellSizeX * 0.5f);
+        float CellStartY = myCamera.transform.position.y - (ScreenBounds.y * 0.5f) + (CellSizeY * 0.5f);
 
 
         for (int x = 0; x < CellRows; x++)
@@ -67,7 +76,11 @@ public class _Grid : MonoBehaviour
 
                 SpriteRenderer spriteRenderer = cellObject.AddComponent<SpriteRenderer>();
 
-                spriteRenderer.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));               
+                spriteRenderer.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+                spriteRenderer.color = Color.black;
+
+                //spriteRenderer.color = new Color(1f, 1f, 1f, 1f);  // Set default color with full opacity
 
                 float scaleX = CellSizeX / texture.width * CellScale;
                 float scaleY = CellSizeY / texture.height * CellScale;
@@ -81,16 +94,8 @@ public class _Grid : MonoBehaviour
 
                 cellObject.transform.position = new Vector3(posX, posY, 0);
 
-                if (RandomPatterns)
-                {
-                    RandomSpawn(x, y);
-                }
-
-                if(DrawPatterns)
-                {
-                    DrawSpawn(x, y);
-                }
-                    
+                RandomSpawn(x, y);
+         
             }
         }        
     }
@@ -123,11 +128,13 @@ public class _Grid : MonoBehaviour
                 }
 
                 bool isAlive = myCells[x, y] != null && myCells[x, y].activeSelf;                
-
+                
+                
                 if (isAlive)
                 {
                     if (liveNeighborCount < 2 || liveNeighborCount > 3)
                     {
+                        
                         NextGen[x, y] = false;
                         
                     }
@@ -136,6 +143,7 @@ public class _Grid : MonoBehaviour
                     {
                         NextGen[x, y] = true;
                         myCells[x, y].GetComponent<SpriteRenderer>().color = Color.cyan; //Keeps on going strong
+                        
                     }
                 }
 
@@ -145,11 +153,14 @@ public class _Grid : MonoBehaviour
                     {
                         NextGen[x, y] = true;
                         myCells[x, y].GetComponent<SpriteRenderer>().color = Color.blue; //Will probably die soon...
+                        
+
                     }
 
                     else
                     {
-                        NextGen[x, y] = false;                       
+                        
+                        NextGen[x, y] = false;
                     }
                 }
             }
@@ -170,7 +181,7 @@ public class _Grid : MonoBehaviour
 
     private void RandomSpawn(int x, int y)
     {
-        int spawnChancePercentage = 20;
+        int spawnChancePercentage = 15;
 
         int randomSpawn = Random.Range(0, 100);
 
@@ -184,90 +195,35 @@ public class _Grid : MonoBehaviour
         }
     }
 
-    private void DrawSpawn(int x, int y)
+    private void DrawSpawn()
     {
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 mousePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(0)) 
-        {
-            myCells[x, y].SetActive(true);  
-        }
-
-    }
-
-    /* Redundant Code
-     * 
-     *     public void LiveOrDead(int x, int y)
-    {
-        if(RandomPatterns)
-        {
-            RandomSpawn(x, y);
-        }
-        else
-        {
-            
-            myCells[x, y].SetActive(false);
-        }
-    }
-     * 
-       public void CellCheck()
-    {
-        for (int x = 0; x < CellRows; x++)
-        {
-            for (int y = 0; y < CellColumns; y++) //(Removed nullcheck (!= null) at the end of every if -statement)
+            for (int x = 0; x < CellRows; x++)
             {
-
-                if (x + 1 < CellRows && myCells[x + 1, y])
+                for (int y = 0; y < CellColumns; y++)
                 {
-                    LiveOrDead(x + 1, y);
-                }
+                    Vector3 cellPosition = myCells[x, y].transform.position;
 
-
-                if (y + 1 < CellColumns && myCells[x, y + 1])
-                {
-                    LiveOrDead(x, y + 1);
-                }
-
-
-                if (x + 1 < CellRows && y + 1 < CellColumns && myCells[x + 1, y + 1])
-                {
-                    LiveOrDead(x + 1, y + 1);
-                }
-
-
-                if (x - 1 >= 0 && myCells[x - 1, y])
-                {
-                    LiveOrDead(x - 1, y);
-                }
-
-
-                if (y - 1 >= 0 && myCells[x, y - 1])
-                {
-                    LiveOrDead(x, y - 1);
-                }
-
-
-                if (x - 1 >= 0 && y - 1 >= 0 && myCells[x - 1, y - 1])
-                {
-                    LiveOrDead(x - 1, y - 1);
-                }
-
-
-                if (x - 1 >= 0 && y + 1 < CellColumns && myCells[x - 1, y + 1])
-                {
-                    LiveOrDead(x - 1, y + 1);
-                }
-
-
-                if (x + 1 < CellRows && y - 1 >= 0 && myCells[x + 1, y - 1])
-                {
-                    LiveOrDead(x + 1, y - 1);
+                    float cellSizeX = myCells[x, y].transform.localScale.x;
+                    float cellSizeY = myCells[x, y].transform.localScale.y;
+   
+                    if (mousePosition.x > cellPosition.x - cellSizeX / 2 && mousePosition.x < cellPosition.x + cellSizeX / 2 &&
+                        mousePosition.y > cellPosition.y - cellSizeY / 2 && mousePosition.y < cellPosition.y + cellSizeY / 2) 
+                    {
+                        if (!myCells[x, y].activeSelf)
+                        {
+                            myCells[x, y].SetActive(true);
+                            SpriteRenderer spriteRenderer = myCells[x, y].GetComponent<SpriteRenderer>();
+                            
+                            spriteRenderer.color = new Color(1f, 0f, 1f, 0.4f);
+                        }
+                    }
                 }
             }
         }
     }
-     
-     */
-
 }
 
