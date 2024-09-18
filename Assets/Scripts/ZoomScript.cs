@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
@@ -7,10 +6,9 @@ public class CameraZoom : MonoBehaviour
     public float minZoom = 2f;
     public float maxZoom = 5f;
 
-    float panSpeed = 1f; 
-    
-    private Camera myCamera;
+    public float panSpeed = 1f;
 
+    private Camera myCamera;
     void Start()
     {
         myCamera = GetComponent<Camera>();
@@ -19,37 +17,40 @@ public class CameraZoom : MonoBehaviour
     void Update()
     {
         ZoomGame();
-        PanGame();
-    }
-
-    private void PanGame()
-    {
-        float panX = Input.GetAxis("Horizontal");
-
-        if(panX != myCamera.orthographicSize * myCamera.aspect / 2)
-        {
-            
-        }
-
-        float panY = Input.GetAxis("Vertical");
-
-        if(panY != myCamera.orthographicSize / 2)
-        {
-
-        }
+        PanCamera();
     }
 
     private void ZoomGame()
     {
-
         float Scroller = Input.GetAxis("Mouse ScrollWheel");
-
+       
         if (Scroller != 0f)
         {
+            Vector2 Mousepos = Input.mousePosition;
+            {
+                float Zoomer = myCamera.orthographicSize - Scroller * zoomSpeed;
 
-            float Zoomer = myCamera.orthographicSize - Scroller * zoomSpeed;
+                myCamera.orthographicSize = Mathf.Clamp(Zoomer, minZoom, maxZoom);
 
-            myCamera.orthographicSize = Mathf.Clamp(Zoomer, minZoom, maxZoom);
+            }
         }
+    }
+
+    private void PanCamera()
+    {
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+
+        Vector2 movement = new Vector2(moveX, moveY);
+
+        myCamera.transform.Translate(movement * panSpeed * Time.deltaTime, Space.World);
+
+        //Vector3 pos = myCamera.transform.position;
+
+        Vector3 pos = myCamera.transform.position;
+        pos.x = Mathf.Clamp(pos.x, myCamera.orthographicSize * myCamera.aspect - 5 * myCamera.aspect, myCamera.aspect * 5 - myCamera.orthographicSize * myCamera.aspect);
+        pos.y = Mathf.Clamp(pos.y, myCamera.orthographicSize - 5, 5 - myCamera.orthographicSize);
+
+        myCamera.transform.position = pos;
     }
 }

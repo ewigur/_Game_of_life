@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0855df6115440b045a9b11cb8f89766e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CellRows: 93
-  CellColumns: 60
-  CellScale: 85
-  SpeedOfSimulation: 4
+  CellRows: 181
+  CellColumns: 101
+  spaceBetweenCells: 90
+  SpeedOfSimulation: 10
   RandomPatterns: 1
+  DrawPatterns: 1
+  generations: 0

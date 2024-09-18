@@ -172,32 +172,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
-      propertyPath: started
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: CellRows
-      value: 202
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
-      propertyPath: CellScale
-      value: 50
+      value: 162
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: CellColumns
-      value: 126
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
-      propertyPath: DrawPatterns
-      value: 1
+      propertyPath: generations
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
-      propertyPath: RandomPatterns
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402063764606259306, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
-      propertyPath: SpeedOfSimulation
-      value: 10
+      propertyPath: spaceBetweenCells
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 8926326407415349793, guid: 0da71ee5f50030341a3de25beadd0b1d, type: 3}
       propertyPath: m_Name
@@ -316,6 +304,7 @@ MonoBehaviour:
   zoomSpeed: 3
   minZoom: 2
   maxZoom: 5
+  panSpeed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

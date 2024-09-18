@@ -4,9 +4,9 @@ public class _Grid : MonoBehaviour
     GameObject[,] myCells;
 
     [Header("Cell Attributes")]
-    private int CellRows = 202;
-    private int CellColumns = 126;
-    public float CellScale = 1.5f;
+    public int CellRows = 202;
+    public int CellColumns = 126;
+    public float spaceBetweenCells = 1.5f;
 
     [Header("Speed")]
     public int SpeedOfSimulation = 4;
@@ -18,6 +18,8 @@ public class _Grid : MonoBehaviour
     private bool PauseGame = false;
 
     private Camera myCamera;
+
+    public int generations;
 
     void Start()
     {
@@ -44,6 +46,7 @@ public class _Grid : MonoBehaviour
 
             Application.targetFrameRate = SpeedOfSimulation;
             NeighborCheck();
+            DrawSpawn();
         }
     }
 
@@ -78,12 +81,12 @@ public class _Grid : MonoBehaviour
 
                 spriteRenderer.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
-                spriteRenderer.color = Color.black;
+                spriteRenderer.color = Color.blue; //new Color(1, 0 , 1 , 1f);
 
                 //spriteRenderer.color = new Color(1f, 1f, 1f, 1f);  // Set default color with full opacity
 
-                float scaleX = CellSizeX / texture.width * CellScale;
-                float scaleY = CellSizeY / texture.height * CellScale;
+                float scaleX = CellSizeX / texture.width * spaceBetweenCells;
+                float scaleY = CellSizeY / texture.height * spaceBetweenCells;
 
                 cellObject.transform.localScale = new Vector2(scaleX, scaleY);
 
@@ -102,6 +105,7 @@ public class _Grid : MonoBehaviour
 
     private void NeighborCheck()
     {
+
         bool[,] NextGen = new bool[CellRows, CellColumns];
 
         for (int x = 0; x < CellRows; x++)
@@ -127,39 +131,36 @@ public class _Grid : MonoBehaviour
                     }
                 }
 
-                bool isAlive = myCells[x, y] != null && myCells[x, y].activeSelf;                
-                
-                
+                //---------//
+                bool isAlive = myCells[x, y] != null && myCells[x, y].activeSelf;
+
                 if (isAlive)
                 {
+                    generations++;
+
                     if (liveNeighborCount < 2 || liveNeighborCount > 3)
-                    {
-                        
-                        NextGen[x, y] = false;
-                        
+                    {                        
+                        NextGen[x, y] = false; 
                     }
 
                     else
                     {
-                        NextGen[x, y] = true;
-                        myCells[x, y].GetComponent<SpriteRenderer>().color = Color.cyan; //Keeps on going strong
-                        
+                        generations = 0;
+                        NextGen[x, y] = true;                       
                     }
+
+                    ColorLerp(myCells[x, y]);
                 }
 
                 else
                 {
                     if (liveNeighborCount == 3)
                     {
-                        NextGen[x, y] = true;
-                        myCells[x, y].GetComponent<SpriteRenderer>().color = Color.blue; //Will probably die soon...
-                        
-
+                        NextGen[x, y] = true;                       
                     }
 
                     else
-                    {
-                        
+                    {                       
                         NextGen[x, y] = false;
                     }
                 }
@@ -177,6 +178,21 @@ public class _Grid : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ColorLerp(GameObject Cells)
+    {
+        SpriteRenderer spriteRenderer = Cells.GetComponent<SpriteRenderer>();
+
+        Color aliveColor = Color.cyan;
+        Color dyingColor = Color.blue;
+
+        int maxGens = 3;
+
+        float cLerping = Mathf.Clamp01((float)generations / maxGens);
+
+        spriteRenderer.color = Color.Lerp(aliveColor, dyingColor, cLerping);
+
     }
 
     private void RandomSpawn(int x, int y)
@@ -210,8 +226,8 @@ public class _Grid : MonoBehaviour
                     float cellSizeX = myCells[x, y].transform.localScale.x;
                     float cellSizeY = myCells[x, y].transform.localScale.y;
    
-                    if (mousePosition.x > cellPosition.x - cellSizeX / 2 && mousePosition.x < cellPosition.x + cellSizeX / 2 &&
-                        mousePosition.y > cellPosition.y - cellSizeY / 2 && mousePosition.y < cellPosition.y + cellSizeY / 2) 
+                    if (mousePosition.x > cellPosition.x - cellSizeX / 4 && mousePosition.x < cellPosition.x + cellSizeX / 4 &&
+                        mousePosition.y > cellPosition.y - cellSizeY / 4 && mousePosition.y < cellPosition.y + cellSizeY / 4) 
                     {
                         if (!myCells[x, y].activeSelf)
                         {
