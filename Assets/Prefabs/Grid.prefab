@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3787859653545513056}
-  - component: {fileID: 5402063764606259306}
+  - component: {fileID: -3341650409179063405}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5402063764606259306
+--- !u!114 &-3341650409179063405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0855df6115440b045a9b11cb8f89766e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CellRows: 181
-  CellColumns: 101
-  spaceBetweenCells: 90
-  SpeedOfSimulation: 10
-  RandomPatterns: 1
-  DrawPatterns: 1
-  generations: 0
+  SpeedOfSimulation: 4

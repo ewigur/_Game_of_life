@@ -3,23 +3,15 @@ public class _Grid : MonoBehaviour
 {
     GameObject[,] myCells;
 
-    [Header("Cell Attributes")]
-    public int CellRows = 202;
-    public int CellColumns = 126;
-    public float spaceBetweenCells = 1.5f;
-
-    [Header("Speed")]
-    public int SpeedOfSimulation = 4;
-
-    [Header("Patterns of Life")]
-    public bool RandomPatterns = false;
-    public bool DrawPatterns = false;
+    int CellRows = 162;
+    int CellColumns = 100;
+    int spaceBetweenCells = 75;
 
     private bool PauseGame = false;
 
     private Camera myCamera;
 
-    public int generations;
+    private int generations;
 
     void Start()
     {
@@ -43,8 +35,7 @@ public class _Grid : MonoBehaviour
                 DrawSpawn();
                 return;
             }
-
-            Application.targetFrameRate = SpeedOfSimulation;
+           
             NeighborCheck();
             DrawSpawn();
         }
@@ -52,7 +43,6 @@ public class _Grid : MonoBehaviour
 
     public void GridCreation()
     {
-
         myCells = new GameObject[CellRows, CellColumns];
 
         var texture = new Texture2D(32, 32);
@@ -81,9 +71,7 @@ public class _Grid : MonoBehaviour
 
                 spriteRenderer.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
-                spriteRenderer.color = Color.blue; //new Color(1, 0 , 1 , 1f);
-
-                //spriteRenderer.color = new Color(1f, 1f, 1f, 1f);  // Set default color with full opacity
+                spriteRenderer.color = Color.blue;
 
                 float scaleX = CellSizeX / texture.width * spaceBetweenCells;
                 float scaleY = CellSizeY / texture.height * spaceBetweenCells;
@@ -97,8 +85,7 @@ public class _Grid : MonoBehaviour
 
                 cellObject.transform.position = new Vector3(posX, posY, 0);
 
-                RandomSpawn(x, y);
-         
+                RandomSpawn(x, y);         
             }
         }        
     }
@@ -132,6 +119,7 @@ public class _Grid : MonoBehaviour
                 }
 
                 //---------//
+
                 bool isAlive = myCells[x, y] != null && myCells[x, y].activeSelf;
 
                 if (isAlive)
@@ -167,7 +155,8 @@ public class _Grid : MonoBehaviour
             }
         }
 
-        //Buffer
+        //------------//
+
         for (int x = 0; x < CellRows; x++)
         {
             for (int y = 0; y < CellColumns; y++)
