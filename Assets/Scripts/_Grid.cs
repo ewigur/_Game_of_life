@@ -22,9 +22,9 @@ public class _Grid : MonoBehaviour
     {
         myCells = new GameObject[cellRows, cellColumns];
 
-        var texture = new Texture2D(32, 32);
-
         Vector2 ScreenBounds = new();
+
+        var texture = new Texture2D(32, 32);
 
         ScreenBounds.x = myCamera.orthographicSize * myCamera.aspect * 2;
         ScreenBounds.y = myCamera.orthographicSize * 2;
@@ -66,7 +66,6 @@ public class _Grid : MonoBehaviour
             }
         }
     }
-
     private void RandomSpawn(int x, int y)
     {
         int spawnChancePercentage = 15;
@@ -100,7 +99,6 @@ public class _Grid : MonoBehaviour
             DrawSpawn();
         }
     }
-
     private void DrawSpawn()
     {
         if (Input.GetMouseButton(0))
@@ -131,10 +129,8 @@ public class _Grid : MonoBehaviour
             }
         }
     }
-
     private void NeighborCheck()
     {
-
         bool[,] NextGen = new bool[cellRows, cellColumns];
 
         for (int x = 0; x < cellRows; x++)
@@ -147,7 +143,6 @@ public class _Grid : MonoBehaviour
 
                 for (int i = 0; i < CheckX.Length; i++)
                 {
-
                     int neighborX = x + CheckX[i];
                     int neighborY = y + CheckY[i];
 
@@ -159,7 +154,6 @@ public class _Grid : MonoBehaviour
                         }
                     }
                 }
-
 
                 bool isAlive = myCells[x, y] != null && myCells[x, y].activeSelf;
 
@@ -207,7 +201,6 @@ public class _Grid : MonoBehaviour
             }
         }
     }
-
     private void ColorLerp(GameObject Cells)
     {
         SpriteRenderer spriteRenderer = Cells.GetComponent<SpriteRenderer>();
@@ -222,6 +215,5 @@ public class _Grid : MonoBehaviour
         spriteRenderer.color = Color.Lerp(aliveColor, dyingColor, cLerping);
 
     }
-
 }
 
