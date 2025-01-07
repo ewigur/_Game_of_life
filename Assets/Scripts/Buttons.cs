@@ -12,14 +12,6 @@ public class Buttons : MonoBehaviour
     {
         promptPanel.SetActive(false);        
     }
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    public void QuitToMenu()
-    {
-        SceneManager.LoadScene("GameMenu");
-    }
     public void StartGame()
     {
         SceneManager.LoadScene("SpawnScene");
