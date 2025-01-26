@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6429399153456529255
+--- !u!1 &2803962830830437447
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4464302476201336076}
-  - component: {fileID: 7515752340942637190}
-  - component: {fileID: 811587680104129064}
+  - component: {fileID: 5530760947509561644}
+  - component: {fileID: 2774673506344933489}
+  - component: {fileID: 3191635514561084251}
   m_Layer: 5
-  m_Name: RestartText
+  m_Name: QuitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4464302476201336076
+--- !u!224 &5530760947509561644
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6429399153456529255}
+  m_GameObject: {fileID: 2803962830830437447}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 668571837427187035}
+  m_Father: {fileID: 9201613919630773106}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000022888184, y: 0.000015258789}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7515752340942637190
+--- !u!222 &2774673506344933489
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6429399153456529255}
+  m_GameObject: {fileID: 2803962830830437447}
   m_CullTransparentMesh: 1
---- !u!114 &811587680104129064
+--- !u!114 &3191635514561084251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6429399153456529255}
+  m_GameObject: {fileID: 2803962830830437447}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "RESTART \nSIMULATION"
+  m_text: QUIT GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bafccabc57de0e842af356c4b83bf1d2, type: 2}
   m_sharedMaterial: {fileID: -787790174182543876, guid: bafccabc57de0e842af356c4b83bf1d2, type: 2}
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 0.76862746, b: 0.9254902, a: 1}
-    topRight: {r: 1, g: 0.7686275, b: 0.92549026, a: 1}
+    topRight: {r: 1, g: 0.76862746, b: 0.9254902, a: 1}
     bottomLeft: {r: 1, g: 0, b: 0.6745098, a: 1}
     bottomRight: {r: 1, g: 0, b: 0.6745098, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &8139092150136945355
+--- !u!1 &7987807493807311963
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,53 +142,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 668571837427187035}
-  - component: {fileID: 5969870555248105041}
-  - component: {fileID: 6351023977572575058}
-  - component: {fileID: 1485245814482840046}
-  - component: {fileID: 7914525453624552219}
+  - component: {fileID: 9201613919630773106}
+  - component: {fileID: 3612591353840023289}
+  - component: {fileID: 5046408730136255464}
+  - component: {fileID: 7039887818564352413}
+  - component: {fileID: 701807737831056495}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: QuitToMainButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &668571837427187035
+--- !u!224 &9201613919630773106
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8139092150136945355}
+  m_GameObject: {fileID: 7987807493807311963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.775, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4464302476201336076}
+  - {fileID: 5530760947509561644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96.1037, y: -47.00947}
-  m_SizeDelta: {x: 170.32751, y: 73.2779}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -95, y: -32}
+  m_SizeDelta: {x: 170.3275, y: 73.278}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5969870555248105041
+--- !u!222 &3612591353840023289
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8139092150136945355}
+  m_GameObject: {fileID: 7987807493807311963}
   m_CullTransparentMesh: 1
---- !u!114 &6351023977572575058
+--- !u!114 &5046408730136255464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8139092150136945355}
+  m_GameObject: {fileID: 7987807493807311963}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -212,13 +212,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1485245814482840046
+--- !u!114 &7039887818564352413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8139092150136945355}
+  m_GameObject: {fileID: 7987807493807311963}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.40784314, g: 0, b: 0.5372549, a: 0}
+    m_HighlightedColor: {r: 0.4074847, g: 0, b: 0.5377358, a: 0}
     m_PressedColor: {r: 0, g: 0, b: 0, a: 0.3764706}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -252,13 +252,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 6351023977572575058}
+  m_TargetGraphic: {fileID: 5046408730136255464}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7914525453624552219}
+      - m_Target: {fileID: 701807737831056495}
         m_TargetAssemblyTypeName: GameOfLife.InGameButtons, Assembly-CSharp
-        m_MethodName: RestartGame
+        m_MethodName: QuitToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -268,17 +268,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7914525453624552219
+--- !u!114 &701807737831056495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8139092150136945355}
+  m_GameObject: {fileID: 7987807493807311963}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b8c04f0157e6c7418e1b05f0e1f8e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Button: {fileID: 8139092150136945355}
+  Button: {fileID: 7987807493807311963}
   controlsPanel: {fileID: 0}
